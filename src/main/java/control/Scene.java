@@ -3,14 +3,11 @@ package control;
 import data.Response;
 import data.Storage;
 import data.Sys;
-import org.apache.log4j.Logger;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Scene {
-    private Logger log;
     private Keyboard keyboard;
     private Storage gameData;
     private String buffAnswer;
@@ -18,8 +15,6 @@ public class Scene {
 
     public Scene(Storage gameData)
     {
-        log = Logger.getLogger(Scene.class);
-        log.info("Starting constructor");
         keyboard = new Keyboard();
         this.gameData = gameData;
         buffChoises = new ArrayList<>();
@@ -27,9 +22,7 @@ public class Scene {
 
     public Response initFirstGameMess(String id, int indexQue)
     {
-        log.info("Starting metod with id ".concat(id));
         Response response;
-
         response = initMessageQuestion(id, 1, indexQue);
 
         return response;
@@ -37,7 +30,6 @@ public class Scene {
 
     public Response initMessageQuestion(String id, int roundNum, int indexQue)
     {
-        log.info("Starting metod with id ".concat(id));
         Response response;
 
         List<String> choiseStrList = new ArrayList<>();
@@ -76,7 +68,6 @@ public class Scene {
 
     public Response initFinalMessage(String id, int result, ReplyKeyboardMarkup markup)
     {
-        log.info("Starting metod with id ".concat(id));
         Response response;
         String responseTxt;
 

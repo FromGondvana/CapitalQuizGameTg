@@ -1,9 +1,9 @@
 package data;
 
 public class Sys {
-    private static final String BOT_NAME = "Capital city quiz";
-    private static final String BOT_USERNAME = "Quiz_capital_bot";
-    private static final String BOT_TOKEN = "5454334849:AAGjhO67eC5iNVty6X6uy1xRS0VwbjZTS9g";
+    private static final String BOT_NAME = {BOT_NAME}
+    private static final String BOT_USERNAME = {BOT_USERNAME};
+    private static final String BOT_TOKEN = {BOT_TOKEN};
 
     private static final int SIZE_FAST_GAME = 7;
     private static final int SIZE_MINI_GAME = 12;

@@ -4,24 +4,17 @@ import data.Response;
 import data.Session;
 import data.Storage;
 import data.Sys;
-import org.apache.log4j.Logger;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 public class Handler {
-    private static Logger log;
-    private Sys sys;
     private Scene scene;
     private Keyboard keyboard;
     private Storage storage;
 
     public Handler() {
-        log = Logger.getLogger(Handler.class);
-        log.info("Start constructor");
-
         storage = new Storage();
         storage.initLists();
-        sys = new Sys();
         scene = new Scene(storage);
 
         keyboard = new Keyboard();
@@ -33,9 +26,9 @@ public class Handler {
         Response response;
         String chatId = inMsg.getChatId().toString();
         String textMsg = inMsg.getText();
-        String mainMenuLabel = "Приветствую вас. CapitalQuizBot - викторина по столицам мира. Подтяни себя в географии, " +
+        String mainMenuLabel = "Приветствую вас. CapitalQuizBot - " +
+                "викторина по столицам мира. Подтяни себя в географии, " +
                 "не будь глупым";
-
 
         if (textMsg.equals("/start")) {
             storage.addId(chatId);
@@ -46,39 +39,28 @@ public class Handler {
             response = new Response(chatId, mainMenuLabel, replyKeyboard);
         }
         else if (textMsg.equals("Быстрая игра")) {
-
             storage.createSession(new Session(chatId, Sys.sizeFast(), false));
             response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
-
         }
         else if (textMsg.equals("20 вопросов")) {
-
             storage.createSession(new Session(chatId, Sys.sizeMidlle(), false));
             response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
-
         }
         else if (textMsg.equals("Марафон")) {
-
             storage.createSession(new Session(chatId, Sys.sizeLarge(), false));
             response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
-
         }
         else if (textMsg.equals("Европа")) {
-
             storage.createSession(new Session(chatId, Sys.sizeMini(), true));
             response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
-
         }
         else if (textMsg.equals("Инфо")) {
             String infoLabel = "По всем жалобам и предложениям пишите olkoswork@gmail.com";
             response = new Response(chatId, infoLabel, keyboard.getMarkup());
-
         }
         else if (textMsg.equals("Статистика")) {
-
             String infoLabel = "Раздел в разработке";
             response = new Response(chatId, infoLabel, keyboard.getMarkup());
-
         }
         else if(storage.isHasSessionWithId(chatId))
         {
@@ -86,7 +68,6 @@ public class Handler {
             {
                 storage.getSession(chatId).nextStep(scene.isCorrectAnswer(textMsg));
                 response = scene.initFinalMessage(chatId, storage.getSession(chatId).getResult(), keyboard.getMarkup());
-
                 storage.deleteSession(chatId);
             }
             else if(textMsg.equals("Стоп"))
@@ -97,7 +78,6 @@ public class Handler {
                 response = new Response(chatId, "Игра принудительно закончена", keyboard.getMarkup());
             }
             else {
-
                 String respTxt;
                 if (scene.isCorrectAnswer(textMsg)) {
                     respTxt = "Верный ответ\n\n";
@@ -116,7 +96,6 @@ public class Handler {
         {
             response = new Response(chatId, "Неизвестная команда", keyboard.getMarkup());
         }
-
         return response;
     }
 }

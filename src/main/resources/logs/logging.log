@@ -32,3 +32,15 @@
 23:53:25,617  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:37 - Get valid message
 23:53:25,621  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:40 - Starting metod with id 5105487250
 23:53:33,051  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:37 - Get valid message
+01:07:44,654  INFO main Bot:<init>:28 - Create obj
+01:07:47,003  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:07:49,752  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:07:50,744  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:07:53,839  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:07:55,972  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:07:58,007  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:08:03,796  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:08:08,125  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:08:14,819  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:08:16,069  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
+01:08:17,870  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:46 - Get valid message
