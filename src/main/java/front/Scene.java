@@ -3,7 +3,6 @@ package front;
 import back.Response;
 import data.Storage;
 import data.Sys;
-import keyboards.GameKeyboard;
 import org.apache.log4j.Logger;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class Scene {
     private Logger log;
-    private GameKeyboard gameKeyboard;
+    private Keyboard keyboard;
     private Storage gameData;
     private String buffAnswer;
     private List<String> buffChoises;
@@ -22,7 +21,7 @@ public class Scene {
     {
         log = Logger.getLogger(Scene.class);
         log.info("Starting constructor");
-        gameKeyboard = new GameKeyboard();
+        keyboard = new Keyboard();
         this.gameData = gameData;
         countQuestion = gameData.getSizeQList();
         buffChoises = new ArrayList<>();
@@ -68,11 +67,11 @@ public class Scene {
             choiseIndList.add(choiseBuff);
         }
 
-        gameKeyboard.initKeyboardRows(choiseStrList);
-        gameKeyboard.updateKeyboard();
-        ReplyKeyboardMarkup keyboard = this.gameKeyboard.getKeyboardMarkup();
+        keyboard.initGameKeyboard(choiseStrList);
+        keyboard.updateKeyboard();
+        ReplyKeyboardMarkup markup = keyboard.getMarkup();
 
-        response = new Response(id, question, correctAns, keyboard);
+        response = new Response(id, question, correctAns, markup);
 
         return response;
     }
