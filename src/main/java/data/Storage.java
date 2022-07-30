@@ -25,11 +25,19 @@ public class Storage {
     void startFillingStrorage(Path path) {
         try {
             List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-            lines.stream().forEach(l -> {
-                String q = l.substring(0, l.indexOf("$")).trim();
-                String ans = l.substring(l.indexOf("$") + 1).trim();
-                questions.add(new Question(q, ans));
-            });
+            for(String line : lines)
+            {
+                int index = line.lastIndexOf("$");
+                String continent = line.substring(index + 1).trim();
+                line = line.substring(0, index);
+
+                index = line.lastIndexOf("$");
+                String city = line.substring(index + 1).trim();
+
+                line = line.substring(0, index);
+                String country = line;
+                questions.add(new Question(country, city, continent));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -48,8 +48,8 @@ public class Handler {
         }
         else if (textMsg.equals("Играть")) {
 
-            sessions.add(new GameSession(chatId, sys.size()));
-            response = scene.initFirstGameMess(chatId, sessions.get(chatId));
+            sessions.add(new GameSession(chatId, Sys.sizeList()));
+            response = scene.initFirstGameMess(chatId, sessions.get(chatId).getNextIndexQuestion());
 
         }
         else if (textMsg.equals("Инфо")) {
@@ -88,7 +88,7 @@ public class Handler {
 
                 sessions.get(chatId).nextStep(scene.isCorrectAnswer(textMsg));
 
-                response = scene.initMessageQuestion(chatId, sessions.get(chatId));
+                response = scene.initMessageQuestion(chatId, sessions.get(chatId).getRoundNumber(), sessions.get(chatId).getNextIndexQuestion());
                 respTxt = respTxt.concat(response.getTxtQ());
                 response.setTxtQ(respTxt);
             }

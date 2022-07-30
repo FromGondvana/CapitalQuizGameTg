@@ -6,24 +6,24 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class GameSession {
+    private int sizeList;
     private int roundNumber;
-    private int bound;
     private int scoreCorrect;
     private String id;
 
     private ArrayList<Integer> usedIndexList;
 
-    public GameSession(String id, int bound) {
+    public GameSession(String id, int size) {
+        this.sizeList = size;
         this.id = id;
-        this.bound = bound;
         this.roundNumber = 1;
         this.scoreCorrect = 0;
 
         usedIndexList = new ArrayList<>();
 
-        while (usedIndexList.size() < 4)
+        while (usedIndexList.size() < Sys.sizeQueue())
         {
-            int rand = (int) (Math.random() * bound);
+            int rand = (int) (Math.random() * sizeList);
             if(!usedIndexList.contains(rand))
                 usedIndexList.add(rand);
         }
@@ -64,7 +64,7 @@ public class GameSession {
 
     public boolean isFinal()
     {
-        if(bound <= roundNumber)
+        if(Sys.sizeQueue() <= roundNumber)
             return true;
         else
             return false;
@@ -80,7 +80,7 @@ public class GameSession {
     }
 
     public int getBound() {
-        return bound;
+        return Sys.sizeQueue();
     }
 
     public int getScoreCorrect() {

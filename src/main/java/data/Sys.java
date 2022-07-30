@@ -5,7 +5,8 @@ public class Sys {
     private static final String BOT_USERNAME = "Quiz_capital_bot";
     private static final String BOT_TOKEN = "5454334849:AAGjhO67eC5iNVty6X6uy1xRS0VwbjZTS9g";
 
-    private static final int COUNT_SIZE_GAME_QLIST = 4;
+    private static final int COUNT_SIZE_GAME_QUEUE = 10;
+    private static final int COUNT_SIZE_QUESTION_LIST = 193;
 
 
     public static String name()
@@ -23,8 +24,13 @@ public class Sys {
         return BOT_TOKEN;
     }
 
-    public static int size()
+    public static int sizeQueue()
     {
-        return COUNT_SIZE_GAME_QLIST;
+        return COUNT_SIZE_GAME_QUEUE;
+    }
+
+    public static int sizeList()
+    {
+        return COUNT_SIZE_QUESTION_LIST;
     }
 }

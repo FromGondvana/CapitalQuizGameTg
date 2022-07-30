@@ -28,7 +28,6 @@ public class MainKeyboard {
         firstKeyRow.add(new KeyboardButton("Играть"));
         firstKeyRow.add(new KeyboardButton("Статистика"));
         firstKeyRow.add(new KeyboardButton("Инфо"));
-        firstKeyRow.add(new KeyboardButton("Обратная связь"));
     }
 
     public void updateKeyboard()
@@ -45,14 +44,5 @@ public class MainKeyboard {
 
     public ReplyKeyboardMarkup getRepMarkup() {
         return replyKeyboardMarkup;
-    }
-
-    public ReplyKeyboardRemove getReplyKeyboardRemove() {
-        return replyKeyboardRemove;
-    }
-
-    public void initKeyboardRemove() {
-        replyKeyboardRemove.setRemoveKeyboard(true);
-        replyKeyboardRemove.setSelective(true);
     }
 }
