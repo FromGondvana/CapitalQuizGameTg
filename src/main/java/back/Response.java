@@ -2,19 +2,19 @@ package back;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
-public class PackValue {
+public class Response {
     private String id;
     private String txtQ;
     private String correctAnswer;
     private ReplyKeyboard keyboard;
 
-    public PackValue(String id, String txtQ, String correctAnswer, ReplyKeyboard keyboard) {
+    public Response(String id, String txtQ, String correctAnswer, ReplyKeyboard keyboard) {
         this.id = id;
         this.correctAnswer = correctAnswer;
         this.txtQ = txtQ;
         this.keyboard = keyboard;
     }
-    public PackValue(String id, String txtQ, ReplyKeyboard keyboard) {
+    public Response(String id, String txtQ, ReplyKeyboard keyboard) {
         this.id = id;
         this.txtQ = txtQ;
         this.keyboard = keyboard;

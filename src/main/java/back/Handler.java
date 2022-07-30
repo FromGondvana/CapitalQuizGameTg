@@ -8,7 +8,6 @@ import keyboards.MainKeyboard;
 import org.apache.log4j.Logger;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
 public class Handler {
     private static Logger log;
@@ -17,7 +16,6 @@ public class Handler {
     private Scene scene;
     private Sessions sessions;
     private MainKeyboard mainKeys;
-    //private ReplyKeyboard keyboard;
 
     public Handler() {
         log = Logger.getLogger(Handler.class);
@@ -32,9 +30,8 @@ public class Handler {
         mainKeys.updateKeyboard();
     }
 
-    public PackValue parse(Message inMsg) {
-        log.info("Call parse");
-        PackValue packValue;
+    public Response parse(Message inMsg) {
+        Response response;
         String chatId = inMsg.getChatId().toString();
         String textMsg = inMsg.getText();
         String mainMenuLabel = "Приветствую вас. CapitalQuizBot - викторина по столицам мира. Подтяни себя в географии, " +
@@ -42,20 +39,28 @@ public class Handler {
 
 
         if (textMsg.equals("/start")) {
-            log.info("Parse \"/start\" started");
             user.addId(chatId);
             mainKeys.updateKeyboard();
             ReplyKeyboard keyboard;
             keyboard = mainKeys.getRepMarkup();
 
-            packValue = new PackValue(chatId, mainMenuLabel, keyboard);
+            response = new Response(chatId, mainMenuLabel, keyboard);
         }
         else if (textMsg.equals("Играть")) {
-            log.info("Parse \"Играть\" started");
 
             sessions.add(new GameSession(chatId, sys.size()));
-            //ReplyKeyboard keyboard = gameScene.keyboard();
-            packValue = scene.initFirstGameMess(chatId);
+            response = scene.initFirstGameMess(chatId, sessions.get(chatId).getNextIndexQuestion());
+
+        }
+        else if (textMsg.equals("Инфо")) {
+            String infoLabel = "По всем жалобам и предложениям пишите olkoswork@gmail.com";
+            response = new Response(chatId, infoLabel, mainKeys.getRepMarkup());
+
+        }
+        else if (textMsg.equals("Статистика")) {
+
+            String infoLabel = "Раздел в разработке";
+            response = new Response(chatId, infoLabel, mainKeys.getRepMarkup());
 
         }
         else if(sessions.isHasWithId(chatId))
@@ -63,56 +68,36 @@ public class Handler {
             if(sessions.get(chatId).isFinal())
             {
                 sessions.get(chatId).nextStep(scene.isCorrectAnswer(textMsg));
-                packValue = scene.initFinalMessage(chatId, sessions.get(chatId).getResult(), mainKeys.getRepMarkup());
+                response = scene.initFinalMessage(chatId, sessions.get(chatId).getResult(), mainKeys.getRepMarkup());
 
                 sessions.delete(chatId);
+            }
+            else if(textMsg.equals("Стоп"))
+            {
+                sessions.delete(chatId);
+                response = new Response(chatId, "Игра принудительно закончена", mainKeys.getRepMarkup());
             }
             else {
 
                 String respTxt;
                 if (scene.isCorrectAnswer(textMsg)) {
-                    respTxt = "Это правильный ответ\n";
+                    respTxt = "Верный ответ\n\n";
                 } else {
-                    respTxt = "Это неправильный ответ\n";
+                    respTxt = "Неверный ответ\n\n";
                 }
 
                 sessions.get(chatId).nextStep(scene.isCorrectAnswer(textMsg));
 
-                packValue = scene.initMessageQuestion(chatId, sessions.get(chatId).getRoundNumber());
-                respTxt = respTxt.concat(packValue.getTxtQ());
-                packValue.setTxtQ(respTxt);
+                response = scene.initMessageQuestion(chatId, sessions.get(chatId).getRoundNumber(), sessions.get(chatId).getNextIndexQuestion());
+                respTxt = respTxt.concat(response.getTxtQ());
+                response.setTxtQ(respTxt);
             }
         }
         else
         {
-            packValue = new PackValue(chatId, "Неизвестная команда", mainKeys.getRepMarkup());
+            response = new Response(chatId, "Неизвестная команда", mainKeys.getRepMarkup());
         }
 
-        /*else
-        {
-            packValue = new PackValue(chatId, "Неизвестная команда", mainKeys.getRepMarkup());
-        }*/
-        /*else{
-            String responseText = scene.initRespMess(textMsg);
-            sessions.get(chatId).nextStep(scene.isCorrectAnswer(textMsg));
-
-            if(sessions.get(chatId).isPreFinal())
-            {
-
-            }
-            packValue = scene.initMessageQuestion(chatId);
-            packValue.setTxtQ(responseText.concat(packValue.getTxtQ()));
-
-            //System.out.println(userData.getPlPlays(chatId).getIndex() + " " + gameScene.countQuestion);
-            //System.out.println(userData.getPlPlays(chatId).getIndex() == gameScene.countQuestion);
-
-            if(usersData.getSession(chatId).getIndex() == gameScene.countQuestion);
-            {
-                packValue.setTxtQ("Ваш результат ".concat(Integer.toString(usersData.getSession(chatId).getResult())));
-                packValue.setKeyboard(mainKeys.getRepMarkup());
-            }
-        }*/
-
-        return packValue;
+        return response;
     }
 }

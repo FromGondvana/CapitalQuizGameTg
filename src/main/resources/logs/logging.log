@@ -432,3 +432,51 @@
 05:15:08,772  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
 05:15:08,773  INFO Quiz_capital_bot Telegram Executor Handler:parse:36 - Call parse
 05:15:08,774  INFO Quiz_capital_bot Telegram Executor Scene:initFinalMessage:90 - Starting metod with id 846305186
+05:51:26,484  INFO main Main:main:14 - Starting
+05:51:30,437  INFO main Bot:<init>:17 - Create obj
+05:51:30,447  INFO main Handler:<init>:22 - Start constructor
+05:51:30,502  INFO main Scene:<init>:24 - Starting constructor
+05:51:34,174  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:34,176  INFO Quiz_capital_bot Telegram Executor Handler:parse:42 - Parse "/start" started
+05:51:34,303  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:34,304  INFO Quiz_capital_bot Telegram Executor Handler:parse:42 - Parse "/start" started
+05:51:35,740  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:35,742  INFO Quiz_capital_bot Telegram Executor Scene:initFirstGameMess:34 - Starting metod with id 846305186
+05:51:35,743  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:51:37,888  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:38,999  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:39,000  INFO Quiz_capital_bot Telegram Executor Scene:initFirstGameMess:34 - Starting metod with id 846305186
+05:51:39,001  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:51:41,713  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:41,715  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:51:43,533  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:43,534  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:51:45,396  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:45,397  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:51:46,857  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:46,859  INFO Quiz_capital_bot Telegram Executor Scene:initFinalMessage:83 - Starting metod with id 846305186
+05:51:50,468  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:52,574  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:54,441  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:55,225  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:51:55,227  INFO Quiz_capital_bot Telegram Executor Scene:initFirstGameMess:34 - Starting metod with id 846305186
+05:51:55,227  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:52:01,830  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:55:54,926  INFO main Main:main:14 - Starting
+05:55:56,897  INFO main Bot:<init>:17 - Create obj
+05:55:56,904  INFO main Handler:<init>:22 - Start constructor
+05:55:56,917  INFO main Scene:<init>:24 - Starting constructor
+05:55:58,865  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:55:58,874  INFO Quiz_capital_bot Telegram Executor Handler:parse:42 - Parse "/start" started
+05:56:00,948  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:56:00,958  INFO Quiz_capital_bot Telegram Executor Scene:initFirstGameMess:34 - Starting metod with id 846305186
+05:56:00,959  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:56:05,810  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:56:05,810  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:56:08,321  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:56:08,325  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:56:10,610  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:56:10,611  INFO Quiz_capital_bot Telegram Executor Scene:initMessageQuestion:44 - Starting metod with id 846305186
+05:56:13,723  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message
+05:56:13,725  INFO Quiz_capital_bot Telegram Executor Scene:initFinalMessage:84 - Starting metod with id 846305186
+05:56:16,170  INFO Quiz_capital_bot Telegram Executor Bot:onUpdateReceived:35 - Get valid message

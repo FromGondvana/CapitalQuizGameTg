@@ -9,29 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameKeyboard {
-    //private ReplyKeyboardRemove replyKeyboardRemove;
     private ReplyKeyboardMarkup replyKeyboardMarkup;
     private ArrayList<KeyboardRow> keyboardRows;
     private KeyboardRow firstKeyRow;
     private KeyboardRow secondKeyRow;
+    private KeyboardRow thirdKeyRow;
     private ArrayList<String> keyTextList;
-    //private KeyboardRow thirdKeyRow;
+
 
     public GameKeyboard()
     {
         replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        //replyKeyboardRemove = new ReplyKeyboardRemove();
         keyboardRows = new ArrayList<>();
         keyTextList = new ArrayList<>();
         firstKeyRow = new KeyboardRow();
         secondKeyRow = new KeyboardRow();
-        //thirdKeyRow = new KeyboardRow();
+        thirdKeyRow = new KeyboardRow();
     }
 
     public void initKeyboardRows(List<String> newKeyTextList){
         keyTextList.addAll(newKeyTextList);
         firstKeyRow.clear();
         secondKeyRow.clear();
+        thirdKeyRow.clear();
         keyboardRows.clear();
 
         int rand = (int)(Math.random() * 3);
@@ -51,8 +51,11 @@ public class GameKeyboard {
         secondKeyRow.add(new KeyboardButton(keyTextList.get(rand)));
         keyTextList.remove(rand);
 
+        thirdKeyRow.add(new KeyboardButton("Стоп"));
+
         keyboardRows.add(firstKeyRow);
         keyboardRows.add(secondKeyRow);
+        keyboardRows.add(thirdKeyRow);
     }
 
     public void updateKeyboard()
