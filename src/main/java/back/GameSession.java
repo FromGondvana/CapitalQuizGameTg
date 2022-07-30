@@ -78,4 +78,12 @@ public class GameSession {
     {
         return scoreCorrect;
     }
+
+    public int getBound() {
+        return bound;
+    }
+
+    public int getScoreCorrect() {
+        return scoreCorrect;
+    }
 }

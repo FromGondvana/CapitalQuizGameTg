@@ -1,11 +1,16 @@
 package data;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
     private List<Question> questions;
-    //private HashMap<Integer, String> capitals;
+    private Path bufferedFilePath = Paths.get("src/main/resources/data/questions.txt");
 
     public Storage()
     {
@@ -14,19 +19,20 @@ public class Storage {
 
     public void initLists()
     {
-        questions.add(new Question("Столица Аргентины", "Буэнос Айрес"));
-        questions.add(new Question("Столица КНДР", "Пхеньян"));
-        questions.add(new Question("Столица Бангладеша", "Дакка"));
-        questions.add(new Question("Столица Ирана", "Тегеран"));
-        questions.add(new Question("Столица Румынии", "Бухарест"));
-        questions.add(new Question("Столица Камбоджи", "Пномпень"));
+        startFillingStrorage(bufferedFilePath);
+    }
 
-        /*int i = 0;
-        for(Question question : questions)
-        {
-            capitals.put(i, question.getAnswer());
-            i = i++;
-        }*/
+    void startFillingStrorage(Path path) {
+        try {
+            List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+            lines.stream().forEach(l -> {
+                String q = l.substring(0, l.indexOf("$")).trim();
+                String ans = l.substring(l.indexOf("$") + 1).trim();
+                questions.add(new Question(q, ans));
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getQuestionStr(int num)

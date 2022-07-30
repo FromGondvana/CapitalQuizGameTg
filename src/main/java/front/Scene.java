@@ -1,6 +1,8 @@
 package front;
 
+import back.GameSession;
 import back.Response;
+import data.Sessions;
 import data.Storage;
 import data.Sys;
 import keyboards.GameKeyboard;
@@ -29,7 +31,17 @@ public class Scene {
         buffChoises = new ArrayList<>();
     }
 
-    public Response initFirstGameMess(String id, int indexQue)
+    public Response initFirstGameMess(String id, GameSession session)
+    {
+        log.info("Starting metod with id ".concat(id));
+        Response response;
+
+        response = initMessageQuestion(id, session);
+
+        return response;
+    }
+
+    /*public Response initFirstGameMess(String id, int indexQue)
     {
         log.info("Starting metod with id ".concat(id));
         Response response;
@@ -37,9 +49,47 @@ public class Scene {
         response = initMessageQuestion(id, 1, indexQue);
 
         return response;
-    }
+    }*/
 
-    public Response initMessageQuestion(String id, int roundNum, int indexQue)
+    public Response initMessageQuestion(String id, GameSession session)
+    {
+        log.info("Starting metod with id ".concat(id));
+        Response response;
+
+        List<String> choiseStrList = new ArrayList<>();
+        List<Integer> choiseIndList = new ArrayList<>();
+        String correctAns;
+        String question = "Вопрос №".concat(Integer.toString(session.getRoundNumber())).concat("\n");
+        int size = Sys.size();
+        choiseIndList.add(session.getNextIndexQuestion());
+        choiseStrList.add(gameData.getQuestion(session.getNextIndexQuestion()).getAnswer());
+        correctAns = gameData.getQuestion(session.getNextIndexQuestion()).getAnswer();
+        question = question.concat(gameData.getQuestion(session.getNextIndexQuestion()).getQuestion());
+
+        buffChoises.clear();
+        buffChoises.addAll(choiseStrList);
+        buffAnswer = correctAns;
+
+        int choiseBuff;
+        for(int i = 0; i < 3; i++)
+        {
+            do {
+                choiseBuff = (int) (Math.random() * size);
+            }while (choiseIndList.contains(choiseBuff));
+
+            choiseStrList.add(gameData.getQuestion(choiseBuff).getAnswer());
+            choiseIndList.add(choiseBuff);
+        }
+
+        gameKeyboard.initKeyboardRows(choiseStrList);
+        gameKeyboard.updateKeyboard();
+        ReplyKeyboardMarkup keyboard = this.gameKeyboard.getKeyboardMarkup();
+
+        response = new Response(id, question, correctAns, keyboard);
+
+        return response;
+    }
+    /*public Response initMessageQuestion(String id, int roundNum, int indexQue)
     {
         log.info("Starting metod with id ".concat(id));
         Response response;
@@ -76,7 +126,7 @@ public class Scene {
         response = new Response(id, question, correctAns, keyboard);
 
         return response;
-    }
+    }*/
 
     public Response initFinalMessage(String id, int result, ReplyKeyboardMarkup markup)
     {
