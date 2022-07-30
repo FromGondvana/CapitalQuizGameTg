@@ -1,8 +1,7 @@
 package back;
 
-import data.Sessions;
+import data.Storage;
 import data.Sys;
-import data.Users;
 import front.Scene;
 import keyboards.MainKeyboard;
 import org.apache.log4j.Logger;
@@ -11,20 +10,19 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 public class Handler {
     private static Logger log;
-    private Users user;
     private Sys sys;
     private Scene scene;
-    private Sessions sessions;
     private MainKeyboard mainKeys;
+    private Storage storage;
 
     public Handler() {
         log = Logger.getLogger(Handler.class);
         log.info("Start constructor");
 
-        user = new Users();
+        storage = new Storage();
+        storage.initLists();
         sys = new Sys();
-        scene = new Scene();
-        sessions = new Sessions();
+        scene = new Scene(storage);
 
         mainKeys = new MainKeyboard();
         mainKeys.updateKeyboard();
@@ -39,7 +37,7 @@ public class Handler {
 
 
         if (textMsg.equals("/start")) {
-            user.addId(chatId);
+            storage.addId(chatId);
             mainKeys.updateKeyboard();
             ReplyKeyboard keyboard;
             keyboard = mainKeys.getRepMarkup();
@@ -48,8 +46,8 @@ public class Handler {
         }
         else if (textMsg.equals("Играть")) {
 
-            sessions.add(new GameSession(chatId, Sys.sizeList()));
-            response = scene.initFirstGameMess(chatId, sessions.get(chatId).getNextIndexQuestion());
+            storage.createSession(new GameSession(chatId, Sys.sizeList()));
+            response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
 
         }
         else if (textMsg.equals("Инфо")) {
@@ -63,18 +61,18 @@ public class Handler {
             response = new Response(chatId, infoLabel, mainKeys.getRepMarkup());
 
         }
-        else if(sessions.isHasWithId(chatId))
+        else if(storage.isHasSessionWithId(chatId))
         {
-            if(sessions.get(chatId).isFinal())
+            if(storage.getSession(chatId).isFinal())
             {
-                sessions.get(chatId).nextStep(scene.isCorrectAnswer(textMsg));
-                response = scene.initFinalMessage(chatId, sessions.get(chatId).getResult(), mainKeys.getRepMarkup());
+                storage.getSession(chatId).nextStep(scene.isCorrectAnswer(textMsg));
+                response = scene.initFinalMessage(chatId, storage.getSession(chatId).getResult(), mainKeys.getRepMarkup());
 
-                sessions.delete(chatId);
+                storage.deleteSession(chatId);
             }
             else if(textMsg.equals("Стоп"))
             {
-                sessions.delete(chatId);
+                storage.deleteSession(chatId);
                 response = new Response(chatId, "Игра принудительно закончена", mainKeys.getRepMarkup());
             }
             else {
@@ -86,9 +84,9 @@ public class Handler {
                     respTxt = "Неверный ответ\n\n";
                 }
 
-                sessions.get(chatId).nextStep(scene.isCorrectAnswer(textMsg));
+                storage.getSession(chatId).nextStep(scene.isCorrectAnswer(textMsg));
 
-                response = scene.initMessageQuestion(chatId, sessions.get(chatId).getRoundNumber(), sessions.get(chatId).getNextIndexQuestion());
+                response = scene.initMessageQuestion(chatId, storage.getSession(chatId).getRoundNumber(), storage.getSession(chatId).getNextIndexQuestion());
                 respTxt = respTxt.concat(response.getTxtQ());
                 response.setTxtQ(respTxt);
             }

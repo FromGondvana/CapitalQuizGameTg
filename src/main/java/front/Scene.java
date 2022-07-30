@@ -18,13 +18,12 @@ public class Scene {
     private List<String> buffChoises;
     private int countQuestion;
 
-    public Scene()
+    public Scene(Storage gameData)
     {
         log = Logger.getLogger(Scene.class);
         log.info("Starting constructor");
         gameKeyboard = new GameKeyboard();
-        gameData = new Storage();
-        gameData.initLists();
+        this.gameData = gameData;
         countQuestion = gameData.getSizeQList();
         buffChoises = new ArrayList<>();
     }
