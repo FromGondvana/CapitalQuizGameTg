@@ -87,7 +87,7 @@ public class Scene {
                 .concat(" - количество правильных ответов\n")
                 //.concat(Double.toString(((double) result) / ((double) Sys.sizeList()) * 100))
                 //.concat("% - ваш результат. Попробуем еще?");
-                .concat("Ты немного прокачал свои знания о столмцах мира. Начнинай скорее новую игру");
+                .concat("Теперь ты помнишь больше. Начнинай скорее новую игру");
         response = new Response(id, responseTxt, markup);
 
         return response;
