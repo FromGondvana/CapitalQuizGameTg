@@ -45,9 +45,27 @@ public class Handler {
 
             response = new Response(chatId, mainMenuLabel, replyKeyboard);
         }
-        else if (textMsg.equals("Играть")) {
+        else if (textMsg.equals("Быстрая игра")) {
 
-            storage.createSession(new Session(chatId));
+            storage.createSession(new Session(chatId, Sys.sizeFast(), false));
+            response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
+
+        }
+        else if (textMsg.equals("20 вопросов")) {
+
+            storage.createSession(new Session(chatId, Sys.sizeMidlle(), false));
+            response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
+
+        }
+        else if (textMsg.equals("Марафон")) {
+
+            storage.createSession(new Session(chatId, Sys.sizeLarge(), false));
+            response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
+
+        }
+        else if (textMsg.equals("Европа")) {
+
+            storage.createSession(new Session(chatId, Sys.sizeMini(), true));
             response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
 
         }

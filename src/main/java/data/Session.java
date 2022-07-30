@@ -6,20 +6,31 @@ import java.util.Objects;
 public class Session {
     private int roundNumber;
     private int scoreCorrect;
+    private int amountQuestion;
     private String id;
+    private boolean isSpecial;
 
     private ArrayList<Integer> usedIndexList;
 
-    public Session(String id) {
+
+    public Session(String id, int amountQuestion, boolean isSpecial) {
+        this.isSpecial = isSpecial;
+        this.amountQuestion = amountQuestion;
         this.id = id;
         this.roundNumber = 1;
         this.scoreCorrect = 0;
 
         usedIndexList = new ArrayList<>();
 
-        while (usedIndexList.size() < Sys.sizeFast())
+        while (usedIndexList.size() < amountQuestion)
         {
-            int rand = (int) (Math.random() * Sys.sizeList());
+            int rand;
+            if(!isSpecial)
+                rand = (int) (Math.random() * Sys.sizeList());
+            else
+                rand = (int) (Math.random() * 43);
+
+
             if(!usedIndexList.contains(rand))
                 usedIndexList.add(rand);
         }
@@ -60,7 +71,7 @@ public class Session {
 
     public boolean isFinal()
     {
-        if(Sys.sizeFast() <= roundNumber)
+        if(amountQuestion <= roundNumber)
             return true;
         else
             return false;

@@ -82,11 +82,12 @@ public class Scene {
 
         buffChoises.clear();
 
-        responseTxt = "Вопросы закончились\n"
+        responseTxt = "Игра подошла к концу\n"
                 .concat(Integer.toString(result))
                 .concat(" - количество правильных ответов\n")
-                .concat(Double.toString(((double) result) / ((double) Sys.sizeList()) * 100))
-                .concat("% - ваш результат. Попробуем еще?");
+                //.concat(Double.toString(((double) result) / ((double) Sys.sizeList()) * 100))
+                //.concat("% - ваш результат. Попробуем еще?");
+                .concat("Ты немного прокачал свои знания о столмцах мира. Начнинай скорее новую игру");
         response = new Response(id, responseTxt, markup);
 
         return response;
