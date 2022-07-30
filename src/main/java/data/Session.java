@@ -1,29 +1,25 @@
-package back;
-
-import data.Sys;
+package data;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class GameSession {
-    private int sizeList;
+public class Session {
     private int roundNumber;
     private int scoreCorrect;
     private String id;
 
     private ArrayList<Integer> usedIndexList;
 
-    public GameSession(String id, int size) {
-        this.sizeList = size;
+    public Session(String id) {
         this.id = id;
         this.roundNumber = 1;
         this.scoreCorrect = 0;
 
         usedIndexList = new ArrayList<>();
 
-        while (usedIndexList.size() < Sys.sizeQueue())
+        while (usedIndexList.size() < Sys.sizeFast())
         {
-            int rand = (int) (Math.random() * sizeList);
+            int rand = (int) (Math.random() * Sys.sizeList());
             if(!usedIndexList.contains(rand))
                 usedIndexList.add(rand);
         }
@@ -53,7 +49,7 @@ public class GameSession {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GameSession that = (GameSession) o;
+        Session that = (Session) o;
         return id == that.id;
     }
 
@@ -64,7 +60,7 @@ public class GameSession {
 
     public boolean isFinal()
     {
-        if(Sys.sizeQueue() <= roundNumber)
+        if(Sys.sizeFast() <= roundNumber)
             return true;
         else
             return false;
@@ -77,10 +73,6 @@ public class GameSession {
     public int getResult()
     {
         return scoreCorrect;
-    }
-
-    public int getBound() {
-        return Sys.sizeQueue();
     }
 
     public int getScoreCorrect() {

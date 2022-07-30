@@ -1,7 +1,5 @@
 package data;
 
-import back.GameSession;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -13,7 +11,7 @@ import java.util.List;
 public class Storage {
     private List<Question> questions;
     private List<String> chatIdList;
-    private List<GameSession> gameSessions;
+    private List<Session> sessions;
 
     private Path bufferedFilePath = Paths.get("src/main/resources/data/questions.txt");
 
@@ -21,7 +19,7 @@ public class Storage {
     {
         questions = new ArrayList<>();
         chatIdList = new ArrayList<>();
-        gameSessions = new ArrayList<>();
+        sessions = new ArrayList<>();
     }
 
     public void initLists()
@@ -54,12 +52,6 @@ public class Storage {
         return questions.get(num);
     }
 
-    public int getSizeQList()
-    {
-        return questions.size();
-    }
-
-
     public void addId(String id) {
         if (!chatIdList.contains(id)) {
             chatIdList.add(id);
@@ -75,16 +67,16 @@ public class Storage {
     }
 
 
-    public void createSession(GameSession playGame)
+    public void createSession(Session playGame)
     {
-        if (!gameSessions.contains(playGame)) {
-            gameSessions.add(playGame);
+        if (!sessions.contains(playGame)) {
+            sessions.add(playGame);
         }
     }
     public void deleteSession(String id) {
 
         int index = 0;
-        for(GameSession test : gameSessions)
+        for(Session test : sessions)
         {
             if(test.isEqualsId(id))
                 break;
@@ -92,12 +84,12 @@ public class Storage {
                 index = index + 1;
         }
 
-        gameSessions.remove(index);
+        sessions.remove(index);
 
     }
 
-    public GameSession getSession(String id) {
-        for(GameSession test : gameSessions)
+    public Session getSession(String id) {
+        for(Session test : sessions)
         {
             if(test.isEqualsId(id))
                 return test;
@@ -107,7 +99,7 @@ public class Storage {
 
     public boolean isHasSessionWithId(String id)
     {
-        for(GameSession test : gameSessions)
+        for(Session test : sessions)
         {
             if(test.isEqualsId(id))
                 return true;

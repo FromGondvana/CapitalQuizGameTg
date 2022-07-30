@@ -1,5 +1,7 @@
-package back;
+package main;
 
+import control.Handler;
+import data.Response;
 import data.Sys;
 import org.apache.log4j.Logger;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -41,21 +43,6 @@ public class Bot extends TelegramLongPollingBot {
                 sendMsg.setText(pack.getTxtQ());
                 sendMsg.setReplyMarkup(pack.getKeyboard());
 
-                /*DeleteMessage outMessage = new DeleteMessage();
-
-                int messId = update.getMessage().getMessageId();
-                outMessage.setMessageId(messId);
-                outMessage.setChatId(update.getMessage().getChatId().toString());
-
-                execute(outMessage);
-
-                DeleteMessage outMessage1 = new DeleteMessage();
-
-
-                outMessage1.setMessageId(messId - 1);
-                outMessage1.setChatId(update.getMessage().getChatId().toString());
-
-                execute(outMessage1);*/
                 execute(sendMsg);
             }
         } catch (TelegramApiException e) {

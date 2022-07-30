@@ -1,6 +1,5 @@
 package main;
 
-import back.Bot;
 import org.apache.log4j.Logger;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;

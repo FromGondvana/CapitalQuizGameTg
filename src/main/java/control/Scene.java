@@ -1,6 +1,6 @@
-package front;
+package control;
 
-import back.Response;
+import data.Response;
 import data.Storage;
 import data.Sys;
 import org.apache.log4j.Logger;
@@ -15,7 +15,6 @@ public class Scene {
     private Storage gameData;
     private String buffAnswer;
     private List<String> buffChoises;
-    private int countQuestion;
 
     public Scene(Storage gameData)
     {
@@ -23,7 +22,6 @@ public class Scene {
         log.info("Starting constructor");
         keyboard = new Keyboard();
         this.gameData = gameData;
-        countQuestion = gameData.getSizeQList();
         buffChoises = new ArrayList<>();
     }
 
@@ -87,7 +85,7 @@ public class Scene {
         responseTxt = "Вопросы закончились\n"
                 .concat(Integer.toString(result))
                 .concat(" - количество правильных ответов\n")
-                .concat(Double.toString(((double) result) / ((double) Sys.sizeQueue()) * 100))
+                .concat(Double.toString(((double) result) / ((double) Sys.sizeList()) * 100))
                 .concat("% - ваш результат. Попробуем еще?");
         response = new Response(id, responseTxt, markup);
 

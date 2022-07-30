@@ -1,9 +1,9 @@
-package back;
+package control;
 
+import data.Response;
+import data.Session;
 import data.Storage;
 import data.Sys;
-import front.Keyboard;
-import front.Scene;
 import org.apache.log4j.Logger;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
@@ -47,7 +47,7 @@ public class Handler {
         }
         else if (textMsg.equals("Играть")) {
 
-            storage.createSession(new GameSession(chatId, Sys.sizeList()));
+            storage.createSession(new Session(chatId));
             response = scene.initFirstGameMess(chatId, storage.getSession(chatId).getNextIndexQuestion());
 
         }

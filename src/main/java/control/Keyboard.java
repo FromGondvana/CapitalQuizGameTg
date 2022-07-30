@@ -1,4 +1,4 @@
-package front;
+package control;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
@@ -32,11 +32,15 @@ public class Keyboard {
         thirdRow.clear();
         rows.clear();
 
-        firstRow.add(new KeyboardButton("Играть"));
-        firstRow.add(new KeyboardButton("Статистика"));
-        firstRow.add(new KeyboardButton("Инфо"));
+        firstRow.add(new KeyboardButton("Быстрая игра"));
+        firstRow.add(new KeyboardButton("20 вопросов"));
+        firstRow.add(new KeyboardButton("Марафон"));
+        firstRow.add(new KeyboardButton("Европа"));
+        secondRow.add(new KeyboardButton("Статистика"));
+        secondRow.add(new KeyboardButton("Инфо"));
 
         rows.add(firstRow);
+        rows.add(secondRow);
     }
 
     public void initGameKeyboard(List<String> newKeyTextList){
